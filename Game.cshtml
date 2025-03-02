@@ -1,0 +1,119 @@
+﻿@page
+@model TimarioTicTac.Pages.GameModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TimarioTic-Tac-Toe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   
+    <script defer src="/js/site.js"></script>
+    <style>
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+
+        body {
+            
+            background-color: #FF1493;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            text-align: center;
+            line-height: 100px;
+            border: 2px solid #333;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        h1 {
+            color: #FA8072;
+            font-weight: bold;
+        }
+
+
+        .title-container {
+            background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            padding: 15px 30px; /* Add spacing inside */
+            border-radius: 10px; /* Rounded corners */
+            backdrop-filter: blur(10px); /* Glass effect */
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        }
+
+            .title-container h1 {
+                color: white; /* White text */
+                font-weight: bold;
+                margin: 0;
+            }
+
+        .title-container {
+            background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            padding: 5px 15px; /* Reduce padding */
+            border-radius: 8px; /* Keep rounded corners */
+            backdrop-filter: blur(8px); /* Glass effect */
+            text-align: center;
+            max-width: 500px; /* Set a maximum width */
+            margin: 10px auto; /* Center the title */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Softer shadow */
+        }
+
+            .title-container h1 {
+                font-size: 1.5rem; /* Reduce text size */
+                color: #FF00FF; /* White text */
+                font-weight: bold;
+                margin: 0;
+            }
+
+
+
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="/videos/v1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="title-container">
+        <h1>TimarioTicTacToe</h1>
+        <div id="game-board" class="game-board">
+            @for (int i = 0; i < 3; i++)
+            {
+                @for (int j = 0; j < 3; j++)
+                {
+                    <div class="cell" id="cell-@((i * 3) + j)" onclick="makeMove(@i, @j)"></div>
+                }
+            }
+        </div>
+        <button class="btn btn-primary mt-3" onclick="resetGame()">Restart</button>
+        <p id="status" class="mt-2"></p>
+    </div>
+</body>
+</html>
